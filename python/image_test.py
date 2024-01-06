@@ -7,9 +7,9 @@ accessories = {"am":0, "pi":0, "zip":0, "botiban":0, "botipal":0, "botimok":0, "
 armor = {}
 
 # 분석할 이미지
-img_rgb = cv2.imread('asd.jpg')
-
-for (root, directories, files) in os.walk("data"):
+img_rgb = cv2.imread('1.jpg')
+i = 1
+for (root, directories, files) in os.walk("data/Accessories"):
 
     # 폴더 전체 경로
     for d in directories:
@@ -30,19 +30,26 @@ for (root, directories, files) in os.walk("data"):
         # 스크린샷에 없는 이미지일 경우 for에 안들어 온다.
         for pt in zip(*loc[::-1]):  # Switch collumns and rows
             # 문자열 파싱
-            directory_name = file_path.split('\\')[1].split('.')[0]
-            file_name = file_path.split('\\')[2].split('.')[0]
-            print("directory_name : ", directory_name)
-            print("file_name : ", file_name)
+            # directory_name = file_path.split('\\')[1].split('.')[0]
+            # file_name = file_path.split('\\')[2].split('.')[0]
+            # print("directory_name : ", directory_name)
+            # print("file_name : ", file_name)
 
-            if directory_name == 'Accessories':
-                accessories[file_name] += 1
-            elif directory_name == 'Auxiliary_equipment':
-                auxiliary_equipment[file_name] += 1
-            elif directory_name == 'Armor':
-                armor[file_name] += 1
+            # if directory_name == 'Accessories':
+            #     accessories[file_name] += 1
+            # elif directory_name == 'Auxiliary_equipment':
+            #     auxiliary_equipment[file_name] += 1
+
+            # elif directory_name == 'Armor':
+            #     armor[file_name] += 1
             #######
-            cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 1)
+            cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 10)
+
+        # 어떤 이미지 때문에 제대로 인식이 안되는지 확인 필요할 때 사용
+        # print("i : ", i, " / file_path : ", file_path)
+        # cv2.imwrite("result_"+str(i)+".jpg", img_rgb)
+        # i += 1
+        ##########################################################
 
 print("auxiliary_equipment : ", auxiliary_equipment)
 print("accessories : ", accessories)
