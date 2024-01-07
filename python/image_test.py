@@ -7,9 +7,9 @@ accessories = {"am":0, "pi":0, "zip":0, "botiban":0, "botipal":0, "botimok":0, "
 armor = {}
 
 # 분석할 이미지
-img_rgb = cv2.imread('1.jpg')
+img_rgb = cv2.imread('2.jpg')
 i = 1
-for (root, directories, files) in os.walk("data/Accessories"):
+for (root, directories, files) in os.walk("data/Armor"):
 
     # 폴더 전체 경로
     for d in directories:
@@ -24,11 +24,11 @@ for (root, directories, files) in os.walk("data/Accessories"):
         h, w = template.shape[:-1]
 
         res = cv2.matchTemplate(img_rgb, template, cv2.TM_CCOEFF_NORMED)
-        threshold = .76
-        loc = np.where(res >= threshold)
+        # threshold = .76
+        # loc = np.where(res >= threshold)
 
         # 스크린샷에 없는 이미지일 경우 for에 안들어 온다.
-        for pt in zip(*loc[::-1]):  # Switch collumns and rows
+        # for pt in zip(*loc[::-1]):  # Switch collumns and rows
             # 문자열 파싱
             # directory_name = file_path.split('\\')[1].split('.')[0]
             # file_name = file_path.split('\\')[2].split('.')[0]
@@ -43,7 +43,7 @@ for (root, directories, files) in os.walk("data/Accessories"):
             # elif directory_name == 'Armor':
             #     armor[file_name] += 1
             #######
-            cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 10)
+        cv2.rectangle(img_rgb, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 10)
 
         # 어떤 이미지 때문에 제대로 인식이 안되는지 확인 필요할 때 사용
         # print("i : ", i, " / file_path : ", file_path)
